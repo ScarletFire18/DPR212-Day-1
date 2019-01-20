@@ -1,0 +1,121 @@
+/**
+   The GradedActivity class stores data about a graded 
+   activity.
+*/
+
+public class GradedActivity  //Super Class
+{
+   private double score;  // Numeric score
+
+   /**
+      The setScore method sets the score field.
+      @param s The value to store in score.
+   */
+
+   public void setScore(double s)
+   {
+      score = s;
+   }
+
+   /**
+      The getScore method returns the score.
+      @return The value stored in the score field.
+   */
+
+   public double getScore()
+   {
+      return score;
+   }
+
+   /**
+      The getGrade method returns a letter grade
+      determined from the score field.
+      @return The letter grade.
+   */
+
+   public char getGrade()
+   {
+      char letterGrade;
+
+      if (score >= 90)
+         letterGrade = 'A';
+      else if (score >= 80)
+         letterGrade = 'B';
+      else if (score >= 70)
+         letterGrade = 'C';
+      else if (score >= 60)
+         letterGrade = 'D';
+      else
+         letterGrade = 'F';
+
+      return letterGrade;
+   }
+}
+
+
+ public class Essay extends GradedActivity  //Uses inheritance, inherits from from superclass graded activity
+      {
+         private double grammar;   //Example of encapsulation, parameters are private and can only be accessed through the public methods below.
+         private double spelling;
+         private double length;
+         private double content;
+         private double score;
+      
+      
+         public void setScore(double g, double s, double l, double c) //Uses polymorphism to add 4 new parameters to the superclass
+            {
+               this.grammar = g;
+               this.spelling = s;
+               this.length = l;
+               this.content = c;
+               super.setScore(g+s+l+c); //Inheritance, inherits setScore from superclass
+            }
+            
+         public double getGrammar()
+            {
+               return grammar;
+            }
+            
+         public double getSpelling()
+            {
+               return spelling;
+            }
+            
+         public double getCorrectLength()
+            {
+               return length;
+            }
+            
+         public double getContent()
+            {
+               return content;
+            }
+       
+      }
+ 
+ /**
+   This program demonstrates a grade calculation using inheritance principles
+*/
+
+public class EssayDemo
+{
+   public static void main(String[] args)
+   {
+      // Create an Essay object.
+      Essay termPaper = new Essay();
+      
+      // Assign scores to the object.
+      // Grammer = 25 points, Spelling = 18 points,
+      // Length = 20 points, and Content = 25 points.
+      termPaper.setScore(25.0, 18.0, 20.0, 24.0);
+      
+      // Display the score details.
+      System.out.println("Term paper:");
+      System.out.println("Grammar points: " + termPaper.getGrammar());
+      System.out.println("Spelling points: " + termPaper.getSpelling());
+      System.out.println("Length points: " + termPaper.getCorrectLength());
+      System.out.println("Content points: " + termPaper.getContent());
+      System.out.println("Total points: " + termPaper.getScore());
+      System.out.println("Grade: " + termPaper.getGrade());
+   }
+}
